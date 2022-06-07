@@ -1,0 +1,27 @@
+<%= turbo_stream_from "staff_dates" %>
+
+<main class="container">
+  <%= link_to sanitize("&larr; Back to dashboard"), root_path %>
+
+  <div class="header">
+    <h1>
+      Staffing
+    </h1>
+    <div class="calender-icon">
+    <%= link_to "<i class='bi bi-calendar-plus' 
+                    style='font-size: 2rem; color: 
+                    black;'></i>".html_safe,
+                    new_staff_date_path,
+                    data: { turbo_frame: dom_id(StaffDate.new) },
+                    class: "btn btn-outline-light staff_icon" %>
+    </div>
+  </div>
+
+  <%= turbo_frame_tag StaffDate.new %>
+
+  <%= turbo_frame_tag "staff_dates" do %>
+  <%= render "staff_dates/empty_state" %>
+    <%= render @staff_dates, staff_date: @staff_date %>
+  <% end %>
+
+</main>

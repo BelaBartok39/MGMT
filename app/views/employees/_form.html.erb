@@ -1,0 +1,18 @@
+<%= simple_form_for [staff_date, employee],
+                    html: { class: "form line-item line-item--form" } do |f| %>
+
+  <%= form_error_notification(employee) %>
+
+  <%= f.input :name,
+              wrapper_html: { class: "line-item__name" },
+              input_html: { autofocus: true } %>
+  <%= f.input :employee_number,
+              wrapper_html: { class: "line-item__quantity" } %>
+  <%= f.input :comment,
+              wrapper_html: { class: "line-item__description" } %>
+
+  <div class="line-item__actions">
+    <%= link_to "Cancel", staff_date_path(staff_date), class: "btn btn--light" %>
+    <%= f.submit class: "btn btn--secondary" %>
+  </div>
+<% end %>

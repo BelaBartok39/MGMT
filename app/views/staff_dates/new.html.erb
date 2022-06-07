@@ -1,0 +1,11 @@
+<main class="container">
+
+  <div class="header">
+    <h1>New date</h1>
+  </div>
+
+  <%= turbo_frame_tag @staff_date do %>
+    <%= render "form", staff_date: @staff_date %>
+  <% end %>
+  
+</main>

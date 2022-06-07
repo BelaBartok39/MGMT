@@ -1,0 +1,8 @@
+<%= turbo_stream.update nested_dom_id(@staff_date, Employee.new), "" %>
+
+<%# Step 2: append the created line item to the list %>
+<%= turbo_stream.append nested_dom_id(@staff_date, "employees") do %>
+  <%= render @employee, staff_date: @staff_date %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

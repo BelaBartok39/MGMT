@@ -1,0 +1,8 @@
+<%= simple_form_for staff_date, html: { class: "form staff-date" } do |f| %>
+  <%= form_error_notification(staff_date) %>
+  <div class="form__input">
+    <%= f.input :date, html5: true, input_html: { autofocus: true } %>
+  </div>
+  <%= link_to "Cancel", staff_dates_path(staff_date), class: "btn btn--light" %>
+  <%= f.submit class: "btn btn--secondary" %>
+<% end %>

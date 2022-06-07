@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "staff_dates", partial: "staff_dates/staff_date", locals: { staff_date: @staff_date } %>
+<%= turbo_stream.update StaffDate.new, "" %>

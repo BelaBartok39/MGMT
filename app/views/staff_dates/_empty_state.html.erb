@@ -1,0 +1,10 @@
+<div class="empty-state empty-state--only-child">
+  <p class="empty-state__text">
+    You don't have any dates yet!
+  </p>
+
+  <%= link_to "Add Date",
+              new_staff_date_path,
+              class: "btn btn--primary outline",
+              data: { turbo_frame: dom_id(StaffDate.new) } %>
+</div>

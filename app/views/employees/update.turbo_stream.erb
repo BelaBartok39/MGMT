@@ -1,0 +1,5 @@
+<%= turbo_stream.replace @employee do %>
+  <%= render @employee, staff_date: @staff_date %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>
