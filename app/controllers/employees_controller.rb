@@ -7,10 +7,10 @@ class EmployeesController < ApplicationController
 
     if @employees.psyche
       respond_to do |format|
-        format.turbo_stream { flash.now[:notice] = "Item was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Staff was successfully sent" }
       end
     end
-    
+
     head :ok
 
       # if @employees.psyche
