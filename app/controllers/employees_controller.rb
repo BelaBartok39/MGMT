@@ -2,6 +2,18 @@ class EmployeesController < ApplicationController
   before_action :set_staff_date 
   before_action :set_employee, only: %i[ show edit update destroy ]
   
+  def psyche
+    StaffMailer.send_staff().deliver
+    head :ok
+
+      if @staffs.psyche
+        format.html { redirect_to employees_url(@employee), notice: "Staff was successfully sent." }
+        format.json { render :show, status: :created, location: @employee }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @employee.errors, status: :unprocessable_entity }
+      end
+  end
 
   def new
     @employee = @staff_date.employees.build

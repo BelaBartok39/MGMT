@@ -23,6 +23,6 @@ end
   resources :staff_dates do
     resources :employees, except: [:index, :show]
   end
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
+  post "psyche" => "employees#psyche"
 end

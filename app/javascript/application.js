@@ -13,6 +13,9 @@ require("@rails/ujs").start()
 import './channels/**/*_channel.js'
 import "./controllers"
 
+import mrujs from 'mrujs'
+mrujs.start()
+
 import * as bootstrap from "bootstrap"
 
 document.addEventListener("turbo:load", () => {
