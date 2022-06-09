@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_staff_date 
   before_action :set_employee, only: %i[ show edit update destroy ]
+
   
   def send_email
     StaffMailer.with(employees: @staff_date.employees).send_staff.deliver_later
@@ -59,6 +60,6 @@ class EmployeesController < ApplicationController
   end
 
   def set_staff_date
-    @staff_date = current_user.staff_dates.find(id: params[:staff_date_id])
+    @staff_date = current_user.staff_dates.find(params[:staff_date_id])
   end
 end

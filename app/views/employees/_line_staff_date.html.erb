@@ -41,6 +41,4 @@
 <% end %>
 </main>
 
-<button href="/send_email" data-remote="true" 
-data-method="post" class="btn btn-secondary">
-Send Staffing</button>
+<%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), method: :post, class: 'btn btn-secondary' %>

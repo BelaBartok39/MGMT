@@ -1,6 +1,13 @@
 class StaffDatesController < ApplicationController
   before_action :set_staff_date, only: %i[ show edit update destroy ]
 
+
+  def send_email
+    StaffMailer.send_staff.deliver_later
+    flash.now[:notice] = "Staff was successfully sent"
+    head :ok
+  end
+
   # GET /staff_dates or /staff_dates.json
   def index
     @staff_dates = current_user.staff_dates
