@@ -22,7 +22,6 @@ end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :staff_dates do
     resources :employees, except: [:index, :show]
+    post "send_email", on: :member
   end
-  
-  post "psyche" => "employees#psyche"
 end
