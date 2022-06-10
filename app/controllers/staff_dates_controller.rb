@@ -3,7 +3,7 @@ class StaffDatesController < ApplicationController
 
 
   def send_email
-    StaffMailer.with(employees: @staff_date.employees).send_staff.deliver_now
+    StaffMailer.with(employees: @staff_date.employees).send_staff(current_user).deliver_now
     # flash.now[:notice] = "Staff was successfully sent"
     head :ok
   end
