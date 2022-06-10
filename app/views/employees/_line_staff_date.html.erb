@@ -1,44 +1,45 @@
 <main class="container">
 
-<%= link_to sanitize("&larr; Back to dates"), staff_dates_path %>
-  <div class="header">
-    <h1>Staffing</h1>
+  <%= link_to sanitize("&larr; Back to dates"), staff_dates_path %>
+    <div class="header">
+      <h1>Staffing</h1>
 
-    <div class="line-item-date__header">
-      <h2 class="line-item-date__title">
-        <%= l(@staff_date.date, format: :long) %>
-      </h2>
+      <div class="line-item-date__header">
+        <h2 class="line-item-date__title">
+          <%= l(@staff_date.date, format: :long) %>
+        </h2>
 
+        </div>
       </div>
     </div>
-  </div>
 
-<%= turbo_frame_tag @staff_date do %>
+  <%= turbo_frame_tag @staff_date do %>
 
-    <div class="line-item-date__body">
-      <div class="line-item line-item--header">
-        <div class="line-item__name">Name</div>
-        <div class="line-item__quantity">EE Number</div>
-        <div class="line-item__actions"></div>
-      </div>
+      <div class="line-item-date__body">
+        <div class="line-item line-item--header">
+          <div class="line-item__name">Name</div>
+          <div class="line-item__quantity">EE Number</div>
+          <div class="line-item__actions"></div>
+        </div>
 
-      <%= turbo_frame_tag nested_dom_id(@staff_date, "employees") do %>
-      <%= render @staff_date.employees %>
-      <% end %>
+        <%= turbo_frame_tag nested_dom_id(@staff_date, "employees") do %>
+        <%= render @staff_date.employees %>
+        <% end %>
 
-      <%= turbo_frame_tag nested_dom_id(@staff_date, Employee.new) %>
+        <%= turbo_frame_tag nested_dom_id(@staff_date, Employee.new) %>
 
-      <div class="line-item-date__footer" >
-        <%= link_to "<i class='bi bi-person-plus-fill' 
-                    style='font-size: 2.0rem; color: 
-                    primary;'></i>".html_safe,
-                    [:new, @staff_date, :employee],
-                    data: { turbo_frame: 
-                    nested_dom_id(@staff_date, Employee.new) } %>             
+        <div class="line-item-date__footer" >
+          <%= link_to "<i class='bi bi-person-plus-fill' 
+                      style='font-size: 2.0rem; color: 
+                      primary;'></i>".html_safe,
+                      [:new, @staff_date, :employee],
+                      data: { turbo_frame: 
+                      nested_dom_id(@staff_date, Employee.new) } %>             
+        </div>
       </div>
     </div>
+  <% end %>
+  <div class="the-send-button">
+    <%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), data: {"turbo-method": :post}, class: 'btn btn-secondary' %>
   </div>
-<% end %>
 </main>
-
-<%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), data: {"turbo-method": :post}, class: 'btn btn-secondary' %>
