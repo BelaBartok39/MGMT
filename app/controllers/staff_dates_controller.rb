@@ -1,11 +1,11 @@
 class StaffDatesController < ApplicationController
-  before_action :set_staff_date, only: %i[ show edit update destroy ]
+  before_action :set_staff_date, only: %i[ show edit update destroy send_email]
   before_action :set_employee
 
 
   def send_email
     StaffMailer.with(employees: @staff_date.employees).send_staff.deliver_later
-    flash.now[:notice] = "Staff was successfully sent"
+    # flash.now[:notice] = "Staff was successfully sent"
     head :ok
   end
 
