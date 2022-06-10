@@ -41,4 +41,4 @@
 <% end %>
 </main>
 
-<%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), method: :post, class: 'btn btn-secondary' %>
+<%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), data: {"turbo-method": :post}, class: 'btn btn-secondary' %>

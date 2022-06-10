@@ -19,7 +19,7 @@ end
   resources :announcements, only: [:index]
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   root to: 'home#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
   resources :staff_dates do
     resources :employees, except: [:index, :show]
     post "send_email", on: :member

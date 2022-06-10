@@ -1,9 +1,10 @@
 class StaffDatesController < ApplicationController
   before_action :set_staff_date, only: %i[ show edit update destroy ]
+  before_action :set_employee
 
 
   def send_email
-    StaffMailer.send_staff.deliver_later
+    StaffMailer.with(employees: @staff_date.employees).send_staff.deliver_later
     flash.now[:notice] = "Staff was successfully sent"
     head :ok
   end
@@ -61,10 +62,7 @@ class StaffDatesController < ApplicationController
   end
 
   private
-
-    def employee_params
-      params.require(:employee).permit(:name, :employee_number, :comment)
-    end
+    
 
     def set_staff_date
       @staff_date = current_user.staff_dates.find(params[:id])
@@ -72,5 +70,13 @@ class StaffDatesController < ApplicationController
 
     def staff_date_params
       params.require(:staff_date).permit(:date)
+    end
+
+    def set_employee
+      @employee = @staff_date.employees.all
+    end
+
+    def employee_params
+      params.require(:employee).permit(:name, :employee_number, :comment)
     end
 end
