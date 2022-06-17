@@ -14,3 +14,4 @@ ActionMailer::Base.smtp_settings = {
   :ssl                    => true,
   :tls                    => true,
 }
+
