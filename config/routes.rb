@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'templates/index'
   draw :madmin
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
@@ -23,5 +24,6 @@ end
   resources :staff_dates do
     resources :employees, except: [:index, :show]
     post "send_email", on: :member
+    post "save_temp", on: :member
   end
 end

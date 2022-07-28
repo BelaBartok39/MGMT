@@ -39,6 +39,17 @@ class StaffDatesController < ApplicationController
     end
   end
 
+  def save_temp
+    @staff_date = current_user.staff_dates.dup(staff_date_params)
+    @template = current_user.template.new(template_params)
+
+    if template.save
+        flash[:notice] = "Template was successfully created."
+    else
+        flash[:error] = "Template was not created."
+    end
+  end 
+
   def update
     if @staff_date.update(staff_date_params)
       respond_to do |format|
@@ -73,5 +84,9 @@ class StaffDatesController < ApplicationController
 
     def employee_params
       params.require(:employee).permit(:name, :employee_number, :comment)
+    end
+
+    def template_params
+      params.require(:template).permit(:name, :userid, :staffdateid)
     end
 end

@@ -39,7 +39,22 @@
       </div>
     </div>
   <% end %>
-  <div class="the-send-button">
-    <%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), data: {"turbo-method": :post}, class: 'btn btn-secondary' %>
-  </div>
+  <div class="container">
+    <div class="header">
+      <%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), data: {"turbo-method": :post}, class: 'btn btn-secondary' %>
+
+      <div class="btn-group dropup">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Save Staff
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Template 1</a></li>
+          <li><a class="dropdown-item" href="#">Template 2</a></li>
+          <li><a class="dropdown-item" href="#">Template 3</a></li>
+          <li class="dropdown-divider"></li>
+          <li class="dropdown-item"> <%= link_to "Save...", save_temp_staff_date_path(@staff_date.id), data: {"turbo-method": :post} %></li>
+        </ul>
+      </div>
+    </div>
+ </div>
 </main>
