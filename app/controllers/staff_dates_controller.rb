@@ -1,6 +1,6 @@
 class StaffDatesController < ApplicationController
-  before_action :set_staff_date, only: %i[ show edit update destroy send_email]
-  # before_action :set_employees, only: %i[ edit update destroy show]
+  before_action :set_staff_date, only: %i[ show edit update destroy send_email save_temp]
+  before_action :set_employee, only: %i[ edit update destroy show save_temp]
 
 
   def send_email
@@ -40,23 +40,6 @@ class StaffDatesController < ApplicationController
     end
   end
 
-  def save_temp
-    @employees = current_user.staff_dates.find(params[:staff_date_id]).employees
-    template = @staff_date.dup
-
-    @employees.each do |employee|
-      template.employees << employee.dup 
-    end
-
-    template.save
-
-    if template.save
-        flash[:notice] = "Template was successfully created."
-    else
-        flash[:error] = "Template was not created."
-    end
-  end 
-
   def update
     if @staff_date.update(staff_date_params)
       respond_to do |format|
@@ -78,6 +61,22 @@ class StaffDatesController < ApplicationController
     end
   end
 
+  def save_temp
+    @employees = @staff_date.employees.find(params[:id])
+    template = current_user.templates.new(template_params)
+
+      @employees.each do |employee|
+          @template.employees << employee.name 
+      end
+
+      if @template.save
+          @template.name = current_user
+          flash[:notice] = "Template was successfully created."
+      else
+          flash[:error] = "Template was not created."
+      end
+  end 
+
   private
     
 
@@ -93,8 +92,8 @@ class StaffDatesController < ApplicationController
       params.require(:employee).permit(:name, :employee_number, :comment)
     end
 
-    def set_employees
-      @employees = @staff_date.employees.find(params[:id])
+    def set_employee
+      @employee = @staff_date.employees.find(params[:id])
     end
 
     def template_params

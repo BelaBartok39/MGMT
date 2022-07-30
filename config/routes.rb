@@ -24,6 +24,6 @@ end
   resources :staff_dates do
     resources :employees, except: [:index, :show]
     post "send_email", on: :member
-    post "save_temp", on: :member
+    get "save_temp", on: :member
   end
 end
