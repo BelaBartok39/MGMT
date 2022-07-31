@@ -26,4 +26,9 @@ end
     post "send_email", on: :member
     get "save_temp", on: :member
   end
+
+  resources :templates do 
+    post "save_temp", on: :member
+  end
+
 end
