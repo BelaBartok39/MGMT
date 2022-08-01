@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_staff_date 
+  before_action :set_staff_date
   before_action :set_employee, only: %i[ show edit update destroy ]
 
 
@@ -55,5 +55,9 @@ class EmployeesController < ApplicationController
 
   def set_staff_date
     @staff_date = current_user.staff_dates.find(params[:staff_date_id])
+  end
+
+  def set_template
+    @template = current_user.templates.find(params[:template_id])
   end
 end

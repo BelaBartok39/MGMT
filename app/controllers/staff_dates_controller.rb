@@ -1,7 +1,5 @@
 class StaffDatesController < ApplicationController
-  before_action :set_staff_date, only: %i[ show edit update destroy send_email save_temp]
-  before_action :set_employee, only: %i[ edit update destroy show save_temp]
-
+  before_action :set_staff_date, only: %i[ show edit update destroy send_email]
 
   def send_email
     StaffMailer.with(employees: @staff_date.employees).send_staff(current_user).deliver_now
@@ -61,22 +59,6 @@ class StaffDatesController < ApplicationController
     end
   end
 
-  def save_temp
-    @employees = @staff_date.employees.find(params[:id])
-    template = current_user.templates.new(template_params)
-
-      @employees.each do |employee|
-          @template.employees << employee.name 
-      end
-
-      if @template.save
-          @template.name = current_user
-          flash[:notice] = "Template was successfully created."
-      else
-          flash[:error] = "Template was not created."
-      end
-  end 
-
   private
     
 
@@ -90,13 +72,5 @@ class StaffDatesController < ApplicationController
 
     def employee_params
       params.require(:employee).permit(:name, :employee_number, :comment)
-    end
-
-    def set_employee
-      @employee = @staff_date.employees.find(params[:id])
-    end
-
-    def template_params
-      params.require(:template).permit(:name, :employees)
     end
 end

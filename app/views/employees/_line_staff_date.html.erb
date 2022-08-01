@@ -52,7 +52,7 @@
           <li><a class="dropdown-item" href="#">Template 2</a></li>
           <li><a class="dropdown-item" href="#">Template 3</a></li>
           <li class="dropdown-divider"></li>
-          <li class="dropdown-item"> <%= button_to "Save...", save_temp_template_path, data: {"turbo-method": :post} %></li>
+          <li class="dropdown-item"> <%= button_to "Save...", save_temp_template_path(@staff_date.id), data: {"turbo-method": :post} %></li>
         </ul>
       </div>
     </div>
