@@ -6,19 +6,12 @@ class TemplatesController < ApplicationController
   end
 
   def save_temp
-    employees = @staff_date.employees.find(params[:id])
+    employees = @staff_date.employees
     @template = current_user.templates.create!(template_params)
-
-      @employees.for_each do |employee|
-          @template.employees << employee.name 
-      end
-
-      if @template.save
-          @template.name = current_user
-          flash[:notice] = "Template was successfully created."
-      else
-          flash[:error] = "Template was not created."
-      end
+    
+    
+    @template.employees << ([employees: employees])
+    @template.save
   end 
 
   private
@@ -30,7 +23,4 @@ class TemplatesController < ApplicationController
   def template_params
     params.permit(:name, :employees)
   end 
-
 end
-
-
