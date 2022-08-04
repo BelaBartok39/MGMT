@@ -10,7 +10,11 @@ class TemplatesController < ApplicationController
     @template = current_user.templates.create!(template_params)
     
     @template.name = current_user.name
-    @template.employees << {employees: "nick"}
+    @template.employees = [employees]
+    
+    # employees.each do |employee|
+    #   @template.employees = [employee] 
+    # end
     @template.save
   end 
 
