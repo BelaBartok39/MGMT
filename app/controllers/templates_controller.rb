@@ -9,8 +9,8 @@ class TemplatesController < ApplicationController
     employees = @staff_date.employees
     @template = current_user.templates.create!(template_params)
     
-    
-    @template.employees << ([employees: employees])
+    @template.name = current_user.name
+    @template.employees << {employees: "nick"}
     @template.save
   end 
 

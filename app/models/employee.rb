@@ -4,4 +4,5 @@ class Employee < ApplicationRecord
 
   validates :name, presence: true
   validates :employee_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  accepts_nested_attributes_for :staff_date, :template
 end
