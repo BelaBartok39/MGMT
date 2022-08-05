@@ -22,7 +22,9 @@ end
   root to: 'home#index'
 
   resources :staff_dates do
-    resources :employees, except: [:index, :show]
+    resources :employees, except: [:index, :show] do
+      post :import_temp, on: :collection
+    end
     post "send_email", on: :member
   end
 

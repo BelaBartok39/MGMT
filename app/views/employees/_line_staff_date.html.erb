@@ -48,7 +48,9 @@
           Save Staff
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Template 1</a></li>
+          <li class="dropdown-item" href="#">
+            <%= button_to "Damnit", import_temp_staff_date_employees_path(@staff_date.id), data: {"turbo-method": :post} %>  
+          </li>
           <li><a class="dropdown-item" href="#">Template 2</a></li>
           <li><a class="dropdown-item" href="#">Template 3</a></li>
           <li class="dropdown-divider"></li>

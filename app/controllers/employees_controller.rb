@@ -23,6 +23,16 @@ class EmployeesController < ApplicationController
   def edit
   end
 
+  def import_temp
+    @employee = @staff_date.employees.build(employee_params)
+    @template = current_user.templates.find(params[:template_id])
+      @template.employees.each do |employee|
+        @employee = @staff_date.employees.build(employee.attributes)
+        @employee.save
+      end
+    redirect_to staff_date_path(@staff_date)
+  end 
+
   def update
     if @employee.update(employee_params)
       respond_to do |format|
