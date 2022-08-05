@@ -1,8 +1,9 @@
 class TemplatesController < ApplicationController
   before_action :set_staff_date
+  
 
   def index
-    @templates = Templates.all
+    @templates = current_user.templates
   end
 
   def save_temp

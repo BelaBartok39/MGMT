@@ -41,20 +41,26 @@
   <% end %>
   <div class="container">
     <div class="header">
-      <%= button_to 'Send Staffing', send_email_staff_date_path(@staff_date.id), data: {"turbo-method": :post}, class: 'btn btn-secondary' %>
+      <%= button_to 'Send Staffing', 
+      send_email_staff_date_path(@staff_date.id), 
+      data: {"turbo-method": :post}, 
+      class: 'btn btn-secondary' %>
 
       <div class="btn-group dropup">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <button type="button" class="btn btn-secondary dropdown-toggle" 
+          data-bs-toggle="dropdown" aria-expanded="false">
           Save Staff
         </button>
         <ul class="dropdown-menu">
-          <li class="dropdown-item" href="#">
-            <%= button_to "Damnit", import_temp_staff_date_employees_path(@staff_date.id), data: {"turbo-method": :post} %>  
-          </li>
-          <li><a class="dropdown-item" href="#">Template 2</a></li>
-          <li><a class="dropdown-item" href="#">Template 3</a></li>
-          <li class="dropdown-divider"></li>
-          <li class="dropdown-item"> <%= button_to "Save...", save_temp_template_path(@staff_date.id), data: {"turbo-method": :post} %></li>
+          <% @templates.each do |t| %>
+            <li><%= button_to t.name, 
+            import_temp_staff_date_employees_path(@staff_date.id, template_id: t.id), 
+            data: {"turbo-method": :post} %></li>
+          <% end %>
+            <li class="dropdown-divider"></li>
+            <li class="dropdown-item"> <%= button_to "Save...", 
+            save_temp_template_path(@staff_date.id), 
+            data: {"turbo-method": :post} %></li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
   before_action :set_staff_date
   before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_template, only: %i[ import_temp ]
 
 
   def new
@@ -24,12 +25,10 @@ class EmployeesController < ApplicationController
   end
 
   def import_temp
-    @employee = @staff_date.employees.build(employee_params)
-    @template = current_user.templates.find(params[:template_id])
-      @template.employees.each do |employee|
-        @employee = @staff_date.employees.build(employee.attributes)
-        @employee.save
-      end
+    @template.employees.each do |employee|
+      @employee = @staff_date.employees.build(employee.attributes)
+      @employee.save
+    end
     redirect_to staff_date_path(@staff_date)
   end 
 
@@ -54,6 +53,10 @@ class EmployeesController < ApplicationController
   end
 
   private
+
+  def set_template
+    @template = current_user.templates.find(params[:id])
+  end
 
   def set_employee
     @employee = @staff_date.employees.find(params[:id])
