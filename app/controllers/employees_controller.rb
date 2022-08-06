@@ -26,9 +26,11 @@ class EmployeesController < ApplicationController
 
   def import_temp
     @template.employees.each do |employee|
-      employee = @staff_date.employees.build(employee.attributes)
+      dup2_employee = employee.dup
+      @staff_date.employees << [dup2_employee]
     end
     @staff_date.save
+    redirect_to staff_date_path(@staff_date), notice: "Template was successfully imported."
   end 
 
   def update
