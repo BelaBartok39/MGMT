@@ -23,7 +23,7 @@ end
 
   resources :staff_dates do
     resources :employees, except: [:index, :show] do
-      post :import_temp, on: :collection
+      post :import_temp, on: :member
     end
     post "send_email", on: :member
   end

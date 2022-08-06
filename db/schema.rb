@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_055231) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "template_id"
-    t.index ["name", "staff_date_id"], name: "index_employees_on_name_and_staff_date_id", unique: true
+    t.index ["name", "staff_date_id"], name: "index_employees_on_name_and_staff_date_id"
     t.index ["staff_date_id"], name: "index_employees_on_staff_date_id"
     t.index ["template_id"], name: "index_employees_on_template_id"
   end

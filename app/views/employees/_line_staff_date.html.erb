@@ -53,8 +53,8 @@
         </button>
         <ul class="dropdown-menu">
           <% @templates.each do |t| %>
-            <li><%= button_to t.name, 
-            import_temp_staff_date_employees_path(@staff_date.id, template_id: t.id), 
+            <li><%= button_to t.created_at, 
+            import_temp_staff_date_employee_path(@staff_date.id, template_id: t.id), 
             data: {"turbo-method": :post} %></li>
           <% end %>
             <li class="dropdown-divider"></li>
