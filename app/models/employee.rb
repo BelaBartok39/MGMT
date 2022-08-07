@@ -1,9 +1,8 @@
 class Employee < ApplicationRecord
-  belongs_to :staff_date
+  belongs_to :staff_date, optional: true
+  belongs_to :template, optional: true
 
   validates :name, presence: true
   validates :employee_number, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  
-  
-  # broadcasts_to ->(staff_date) { "staff_dates" }, inserts_by: :prepend
+  accepts_nested_attributes_for :staff_date, :template
 end

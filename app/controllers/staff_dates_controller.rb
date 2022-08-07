@@ -1,10 +1,10 @@
 class StaffDatesController < ApplicationController
   before_action :set_staff_date, only: %i[ show edit update destroy send_email]
-
-
+  before_action :set_template
+  
   def send_email
     StaffMailer.with(employees: @staff_date.employees).send_staff(current_user).deliver_now
-    # flash.now[:notice] = "Staff was successfully sent"
+      flash.now[:notice] = "Staff was successfully sent"
     head :ok
   end
 
@@ -62,6 +62,9 @@ class StaffDatesController < ApplicationController
 
   private
     
+    def set_template
+      @templates = current_user.templates
+    end
 
     def set_staff_date
       @staff_date = current_user.staff_dates.find(params[:id])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_06_171154) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_04_055231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,8 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_06_171154) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "staff_date_id"], name: "index_employees_on_name_and_staff_date_id", unique: true
+    t.bigint "template_id"
+    t.index ["name", "staff_date_id"], name: "index_employees_on_name_and_staff_date_id"
     t.index ["staff_date_id"], name: "index_employees_on_staff_date_id"
+    t.index ["template_id"], name: "index_employees_on_template_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -107,6 +109,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_06_171154) do
     t.index ["user_id"], name: "index_staff_dates_on_user_id"
   end
 
+  create_table "templates", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "employees", default: [], array: true
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_templates_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -126,6 +137,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_06_171154) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "employees", "staff_dates"
+  add_foreign_key "employees", "templates"
   add_foreign_key "services", "users"
   add_foreign_key "staff_dates", "users"
+  add_foreign_key "templates", "users"
 end

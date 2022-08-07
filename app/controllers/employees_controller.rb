@@ -1,6 +1,7 @@
 class EmployeesController < ApplicationController
-  before_action :set_staff_date 
+  before_action :set_staff_date
   before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_template
 
 
   def new
@@ -23,6 +24,16 @@ class EmployeesController < ApplicationController
   def edit
   end
 
+  def import_temp
+    @template.employees.each do |employee|
+      @staff_date.employees.build([{employee_number: 
+      employee.employee_number, name: employee.name, 
+      comment: employee.comment}])
+    end
+      @staff_date.save
+    redirect_to staff_date_path(@staff_date), notice: "Template was successfully imported."
+  end 
+
   def update
     if @employee.update(employee_params)
       respond_to do |format|
@@ -44,6 +55,10 @@ class EmployeesController < ApplicationController
   end
 
   private
+
+  def set_template
+    @template = current_user.templates.find_by_id(params[:template_id])
+  end
 
   def set_employee
     @employee = @staff_date.employees.find(params[:id])
