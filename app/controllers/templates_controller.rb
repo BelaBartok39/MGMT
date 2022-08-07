@@ -13,7 +13,7 @@ class TemplatesController < ApplicationController
     @template.name = @template.created_at.strftime("%Y-%m-%d %H:%M:%S")
     
     employees.each do |employee|
-      @template.employees << [employee]
+      @template.employees << employee
     end
    
     @template.save
