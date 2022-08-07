@@ -1,6 +1,8 @@
 class TemplatesController < ApplicationController
-  before_action :set_staff_date
-  
+  # before_action :set_staff_date
+
+  def show
+  end
 
   def index
     @templates = current_user.templates
@@ -22,9 +24,9 @@ class TemplatesController < ApplicationController
   private
 
 
-  def set_staff_date
-    @staff_date = current_user.staff_dates.find(params[:id])
-  end
+  # def set_staff_date
+  #   @staff_date = current_user.staff_dates.find(params[:id])
+  # end
 
   def template_params
     params.permit(:name, :employees)

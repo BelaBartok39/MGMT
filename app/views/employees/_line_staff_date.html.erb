@@ -58,9 +58,9 @@
             data: {"turbo-method": :post} %></li>
           <% end %>
             <li class="dropdown-divider"></li>
-            <li class="dropdown-item"> <%= button_to "Save...", 
-            save_temp_template_path(@staff_date.id), 
-            data: {"turbo-method": :post} %></li>
+            <li class="dropdown-item"> <%= link_to "Save...",
+            new_template_path,
+            data: { turbo: true, turbo_frame: 'modal' } %></li>
         </ul>
       </div>
     </div>
