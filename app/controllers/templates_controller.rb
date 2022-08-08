@@ -1,5 +1,5 @@
 class TemplatesController < ApplicationController
-  before_action :set_template, only: :update
+  before_action :set_template, only: %i[ show edit destroy update ]
   before_action :set_staff_date, only: :save
 
   def show
@@ -14,6 +14,7 @@ class TemplatesController < ApplicationController
   end
 
   def edit
+    @templates = Template.all
   end
 
   def save
@@ -30,6 +31,15 @@ class TemplatesController < ApplicationController
       end
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @template.destroy
+  
+    respond_to do |format|
+      format.html { redirect_to staff_date_path(@staff_date), notice: "Date was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Date was successfully destroyed." }
     end
   end
 
