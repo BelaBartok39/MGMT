@@ -1,32 +1,49 @@
 class TemplatesController < ApplicationController
-  before_action :set_staff_date
-  
+  before_action :set_template, only: :update
+  before_action :set_staff_date, only: :save
+
+  def show
+  end
 
   def index
     @templates = current_user.templates
   end
 
-  def save_temp
-    employees = @staff_date.employees
-    @template = current_user.templates.create!(template_params)
-    
-    @template.name = @template.created_at.strftime("%Y-%m-%d %H:%M:%S")
-    
-    employees.each do |employee|
-      @template.employees << employee
-    end
-   
+  def new
+    @template = Template.new
+  end
+
+  def edit
+  end
+
+  def save
+    @template = current_user.templates.create
+    @template.employees = @staff_date.employees
     @template.save
-  end 
+  end
+
+  def update
+    if @template.update(template_params)
+      respond_to do |format|
+        format.html { redirect_to staff_dates_path, notice: "Date was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Date was successfully updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 
+  def set_template
+    @template = Template.find(params[:id])
+  end
 
   def set_staff_date
     @staff_date = current_user.staff_dates.find(params[:id])
   end
 
   def template_params
-    params.permit(:name, :employees)
-  end 
+    params.require(:template).permit(:name)
+  end
 end

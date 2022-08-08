@@ -53,14 +53,14 @@
         </button>
         <ul class="dropdown-menu">
           <% @templates.each do |t| %>
-            <li><%= button_to t.created_at, 
+            <li><%= button_to t.name, 
             import_temp_staff_date_employee_path(@staff_date.id, template_id: t.id), 
             data: {"turbo-method": :post} %></li>
           <% end %>
             <li class="dropdown-divider"></li>
-            <li class="dropdown-item"> <%= button_to "Save...", 
-            save_temp_template_path(@staff_date.id), 
-            data: {"turbo-method": :post} %></li>
+            <li class="dropdown-item"> <%= link_to "Save...",
+            save_template_path(@staff_date.id, :employees),
+            data: { turbo: true, turbo_frame: 'modal' } %></li>
         </ul>
       </div>
     </div>

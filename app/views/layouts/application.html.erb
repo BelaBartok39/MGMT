@@ -5,9 +5,9 @@
   </head>
 
   <body class="d-flex flex-column h-100">
+    <%= turbo_frame_tag "modal" %>
     <main class="flex-shrink-0"> 
       <%= render 'shared/navbar' %>
-      <%= render 'shared/notices' %>
       <%= render 'layouts/flash' %>
       <div class="container mt-4 mx-auto">
         <%= yield %>

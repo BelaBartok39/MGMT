@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def turbo_frame_request_variant
+    request.variant = :turbo_frame if turbo_frame_request?
+  end
+  
   protected
 
     def configure_permitted_parameters

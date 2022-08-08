@@ -28,9 +28,9 @@ end
     post "send_email", on: :member
   end
 
-  resources :templates do 
-    resources :staff_date, except: [:index, :show]
-    post "save_temp", on: :member
+  resources :templates do
+    post "save", on: :member
+    get "save", on: :member
   end
 
 end
