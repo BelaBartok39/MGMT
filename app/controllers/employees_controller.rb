@@ -30,7 +30,7 @@ class EmployeesController < ApplicationController
       employee.employee_number, name: employee.name, 
       comment: employee.comment}])
     end
-      @staff_date.save
+    @staff_date.save
     redirect_to staff_date_path(@staff_date), notice: "Template was successfully imported."
   end 
 
