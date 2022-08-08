@@ -1,6 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: %i[ show edit destroy update ]
-  before_action :set_staff_date, only: :save
+  before_action :set_staff_date, only: %i[ show destroy update save ]
 
   def show
   end
@@ -9,15 +9,16 @@ class TemplatesController < ApplicationController
     @templates = current_user.templates
   end
 
-  def new
-    @template = Template.new
-  end
-
   def edit
-    @templates = Template.all
+    @templates = current_user.templates
   end
 
   def save
+    @template = Template.new
+  end
+    
+  def create
+    @staff_date = current_user.staff_dates.find(params[:staff_date_id])
     @template = current_user.templates.create
     @template.employees = @staff_date.employees
     @template.save
@@ -38,7 +39,7 @@ class TemplatesController < ApplicationController
     @template.destroy
   
     respond_to do |format|
-      format.html { redirect_to staff_date_path(@staff_date), notice: "Date was successfully destroyed." }
+      format.html { redirect_to staff_date_path, notice: "Date was successfully destroyed." }
       format.turbo_stream { flash.now[:notice] = "Date was successfully destroyed." }
     end
   end

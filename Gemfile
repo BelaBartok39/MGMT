@@ -88,4 +88,5 @@ gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
 gem "simple_form", "~> 5.1.0"
 gem "foreman"
+gem 'ruby_jard'
 
