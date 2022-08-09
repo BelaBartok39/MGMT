@@ -1,3 +1,4 @@
+
 <main class="container">
 
   <%= link_to sanitize("&larr; Back to dates"), staff_dates_path %>
@@ -61,7 +62,7 @@
           
           <li class="dropdown-divider"></li>          
           <li class="dropdown-item"> <%= link_to "Edit",
-          edit_template_path(@staff_date.id, :employees),
+          templates_path,
           data: { turbo: true, turbo_frame: 'modal' } %></li>
           
           <li class="dropdown-divider"></li>

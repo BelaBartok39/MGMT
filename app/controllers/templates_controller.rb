@@ -1,22 +1,19 @@
 class TemplatesController < ApplicationController
-  before_action :set_template, only: %i[ show edit destroy update ]
+  before_action :set_template, only: %i[ show edit update destroy ]
   before_action :set_staff_date, only: %i[ new create ]
 
-  def show
-  end
 
   def index
     @templates = current_user.templates
   end
 
   def edit
-    @templates = current_user.templates
   end
 
   def new
     @template = Template.new
   end
-    
+
   def create
     @template = current_user.templates.new(template_params)
     @template.employees = @staff_date.employees

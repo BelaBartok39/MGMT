@@ -137,7 +137,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_04_055231) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "employees", "staff_dates"
-  add_foreign_key "employees", "templates"
   add_foreign_key "services", "users"
   add_foreign_key "staff_dates", "users"
   add_foreign_key "templates", "users"

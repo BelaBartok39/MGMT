@@ -25,9 +25,10 @@ end
     resources :employees, except: [:index, :show] do
       post :import_temp, on: :member
     end
-    post "send_email", on: :member
+      post "send_email", on: :member
   end
 
-  resources :templates
-  
+  resources :templates, except: [:show] do
+    resources :employees
+  end
 end
