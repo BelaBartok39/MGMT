@@ -1,6 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: %i[ show edit destroy update ]
-  before_action :set_staff_date, only: %i[ show destroy update save ]
+  before_action :set_staff_date, only: %i[ new create ]
 
   def show
   end
@@ -13,22 +13,30 @@ class TemplatesController < ApplicationController
     @templates = current_user.templates
   end
 
-  def save
-    @template = Template.new(params[:staff_date_id])
-    @staff_date_id = params[:staff_date_id]
+  def new
+    @template = Template.new
   end
     
   def create
-    @template = current_user.templates.create
+    @template = current_user.templates.new(template_params)
     @template.employees = @staff_date.employees
-    @template.save
+    
+    if @template.save
+      respond_to do |format|
+        format.html { redirect_to staff_dates_path, notice: "Template was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Template was successfully created." }
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def update
     if @template.update(template_params)
       respond_to do |format|
-        format.html { redirect_to staff_dates_path, notice: "Date was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Date was successfully updated." }
+        format.html { redirect_to staff_dates_path, notice: "Template was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Template was successfully updated." }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -39,8 +47,8 @@ class TemplatesController < ApplicationController
     @template.destroy
   
     respond_to do |format|
-      format.html { redirect_to staff_date_path, notice: "Date was successfully destroyed." }
-      format.turbo_stream { flash.now[:notice] = "Date was successfully destroyed." }
+      format.html { redirect_to staff_date_path, notice: "Template was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Template was successfully destroyed." }
     end
   end
 
@@ -51,7 +59,7 @@ class TemplatesController < ApplicationController
   end
 
   def set_staff_date
-    @staff_date = current_user.staff_dates.find(params[:id])
+    @staff_date = current_user.staff_dates.find(params[:staff_date_id])
   end
 
   def template_params

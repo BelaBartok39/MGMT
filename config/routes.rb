@@ -28,9 +28,6 @@ end
     post "send_email", on: :member
   end
 
-  resources :templates do
-    post "save", on: :member
-    get "save", on: :member
-  end
-
+  resources :templates
+  
 end
