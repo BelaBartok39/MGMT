@@ -1,4 +1,6 @@
+<main class="container">
 <% flash.each do |flash_type, message| %>
+
   <div
     class="flash__message"
     data-controller="removals"
@@ -6,4 +8,6 @@
   >
     <%= message %>
   </div>
+
 <% end %>
+</main>

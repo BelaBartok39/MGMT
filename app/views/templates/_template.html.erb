@@ -1,13 +1,10 @@
 
 
  <%= @templates.each do |template| %>
-  <div class="line-item__name">
-    <%= template.name %>
-
-
-    <div class="quote__actions">
-
-
+  <div class="template__actions">
+    <div class="line-item__name">
+      <%= template.name %>
+    </div>
     <%= link_to "<i class='bi bi-trash' 
                 style='font-size: 1.5rem; color: 
                 red;'></i>".html_safe,
@@ -19,8 +16,8 @@
     <%= link_to "<i class='bi bi-pencil-square' 
                 style='font-size: 1.5rem; color: 
                 black;'></i>".html_safe,
-                [:save, @template],
+                save_template_path(template),
                 class:"btn btn--light staff_icon" %>
-    </div>
+    
   </div>
  <% end %>

@@ -14,11 +14,11 @@ class TemplatesController < ApplicationController
   end
 
   def save
-    @template = Template.new
+    @template = Template.new(params[:staff_date_id])
+    @staff_date_id = params[:staff_date_id]
   end
     
   def create
-    @staff_date = current_user.staff_dates.find(params[:staff_date_id])
     @template = current_user.templates.create
     @template.employees = @staff_date.employees
     @template.save
