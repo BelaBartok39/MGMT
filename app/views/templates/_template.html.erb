@@ -3,10 +3,10 @@
   <div class="template__actions">
     <div class="line-item__name">
       
-      <%= link_to template.name,
-        import_temp_staff_date_employee_path(@staff_date, template.id),
+      <%= button_to template.name,
+        template_staff_date_import_temp_path(@staff_date, template),
         data: {"turbo-method": :post} %>
-    
+  
     </div>
     <%= link_to "<i class='bi bi-trash' 
                 style='font-size: 1.5rem; color: 

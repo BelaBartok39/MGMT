@@ -23,12 +23,13 @@ end
 
   resources :staff_dates do
     resources :employees, except: [:index, :show] do
-      post :import_temp, on: :member
     end
       post "send_email", on: :member
   end
 
   resources :templates, except: [:show] do
-    resources :employees
+    resources :staff_dates, only: [:index] do
+    post "import_temp", to: "employees#import_temp", only: [:index]
+    end
   end
 end
