@@ -1,13 +1,17 @@
 
-<% @templates.each do |temp| %>
+<% @templates.each do |template| %>
   <div class="template__actions">
     <div class="line-item__name">
-      <%= temp.name %>
+      
+      <%= link_to template.name,
+        import_temp_staff_date_employee_path(@staff_date, template.id),
+        data: {"turbo-method": :post} %>
+    
     </div>
     <%= link_to "<i class='bi bi-trash' 
                 style='font-size: 1.5rem; color: 
                 red;'></i>".html_safe,
-                [temp],
+                [template],
                 data: {"turbo-method": :delete},               
                 form: { data: {turbo_frame: "_top" } },
                 class:"btn btn--light staff_icon" %>
@@ -15,7 +19,7 @@
     <%= link_to "<i class='bi bi-pencil-square' 
                 style='font-size: 1.5rem; color: 
                 black;'></i>".html_safe,
-                [:edit, temp],
+                [:edit, template],
                 class:"btn btn--light staff_icon" %>
   </div>
 <% end %>
