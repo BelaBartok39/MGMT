@@ -30,8 +30,15 @@ class EmployeesController < ApplicationController
       employee.employee_number, name: employee.name, 
       comment: employee.comment}])
     end
-    @staff_date.save
-    redirect_to staff_date_path(@staff_date), notice: "Template was successfully imported."
+
+    if @staff_date.save
+      respond_to do |format|
+        format.html { redirect_to line_staff_date_path(@employee), notice: "Item was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end 
 
   def update
