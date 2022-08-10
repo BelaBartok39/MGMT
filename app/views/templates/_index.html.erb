@@ -1,0 +1,6 @@
+<%= turbo_stream_from "templates" %>
+
+  <%= turbo_frame_tag "templates" do %>
+    <%= render "templates/empty_state" %>
+    <%= render @templates, template: @template %>
+  <% end %>

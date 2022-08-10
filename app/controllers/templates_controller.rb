@@ -32,7 +32,7 @@ class TemplatesController < ApplicationController
   def update
     if @template.update(template_params)
       respond_to do |format|
-        format.html { redirect_to staff_dates_path(@staff_date), notice: "Template was successfully updated." }
+        format.html { redirect_to templates_path, notice: "Template was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Template was successfully updated." }
       end
     else

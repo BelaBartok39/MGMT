@@ -1,25 +1,26 @@
+<%= turbo_frame_tag template do %>
 
-<% @templates.each do |template| %>
-  <div class="template__actions">
-    <div class="line-item__name">
-      
-      <%= button_to template.name,
-        template_staff_date_import_temp_path(@staff_date, template),
-        data: {"turbo-method": :post} %>
-  
+    <div class="template__actions">
+        <div class="line-item__name">
+        
+        <%= button_to template.name,
+            template_staff_date_import_temp_path(@staff_date, template),
+            data: {"turbo-method": :post} %>
+
+        </div>
+        <%= link_to "<i class='bi bi-trash' 
+                    style='font-size: 1.5rem; color: 
+                    red;'></i>".html_safe,
+                    [template],
+                    data: {"turbo-method": :delete},
+                    form: { data: {turbo_frame: "_top" } },               
+                    class:"btn btn--light staff_icon" %>
+
+        <%= link_to "<i class='bi bi-pencil-square' 
+                    style='font-size: 1.5rem; color: 
+                    black;'></i>".html_safe,
+                    [:edit, template],
+                    class:"btn btn--light staff_icon" %>
     </div>
-    <%= link_to "<i class='bi bi-trash' 
-                style='font-size: 1.5rem; color: 
-                red;'></i>".html_safe,
-                [template],
-                data: {"turbo-method": :delete},               
-                class:"btn btn--light staff_icon" %>
 
-    <%= link_to "<i class='bi bi-pencil-square' 
-                style='font-size: 1.5rem; color: 
-                black;'></i>".html_safe,
-                [:edit, template],
-                data: { turbo: true, turbo_frame: 'modal' },
-                class:"btn btn--light staff_icon" %>
-  </div>
 <% end %>

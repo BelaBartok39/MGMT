@@ -1,0 +1,6 @@
+
+<%= turbo_stream.replace @template do %>
+  <%= render @template %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

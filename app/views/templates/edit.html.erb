@@ -1,4 +1,4 @@
 
-<%= turbo_frame_tag "modal" do %>
-  <%= render_modal title: "Templates", body: "edit", footer: "" %>
-<% end %>
+  <%= turbo_frame_tag @template do %>
+    <%= render "form", template: @template %>
+  <% end %>
