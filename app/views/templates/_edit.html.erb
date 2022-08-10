@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "modal" do %>
+    <%= simple_form_for @template, data: { turbo: false } do |f| %>     
+
+        <%= f.error_notification %>
+
+        <div class="mb-3">
+            <%= f.input :name, input_html: { autofocus: true } %>
+        </div>
+        <div class="mb-4 mt-4 text-end">
+            <%= f.submit class: "btn btn-primary" %>
+        </div>
+    <% end %>
+<% end %>

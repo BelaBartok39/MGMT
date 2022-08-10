@@ -13,8 +13,8 @@ class EmployeesController < ApplicationController
 
     if @employee.save
       respond_to do |format|
-        format.html { redirect_to staff_date(@staff_date), notice: "Item was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Item was successfully created." }
+        format.html { redirect_to staff_date(@staff_date), notice: "Employee was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Employee was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity
@@ -33,8 +33,8 @@ class EmployeesController < ApplicationController
 
     if @staff_date.save
       respond_to do |format|
-        format.html { redirect_to line_staff_date_path(@employee), notice: "Item was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
+        format.html { redirect_to line_staff_date_path(@employee), notice: "Employees were successfully imported." }
+        format.turbo_stream { flash.now[:notice] = "Employees were successfully imported." }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -44,8 +44,8 @@ class EmployeesController < ApplicationController
   def update
     if @employee.update(employee_params)
       respond_to do |format|
-        format.html { redirect_to line_staff_date_path(@employee), notice: "Item was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "Item was successfully updated." }
+        format.html { redirect_to line_staff_date_path(@employee), notice: "Employee was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Employee was successfully updated." }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -56,8 +56,8 @@ class EmployeesController < ApplicationController
     @employee.destroy
   
     respond_to do |format|
-      format.html { redirect_to staff_date_path(@staff_date), notice: "Date was successfully destroyed." }
-      format.turbo_stream { flash.now[:notice] = "Date was successfully destroyed." }
+      format.html { redirect_to staff_date_path(@staff_date), notice: "Employee was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Employee was successfully destroyed." }
     end
   end
 
