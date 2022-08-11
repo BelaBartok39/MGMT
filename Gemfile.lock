@@ -348,6 +348,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   madmin
+  minitest
   name_of_person (~> 1.1)
   noticed (~> 1.4)
   omniauth-facebook (~> 8.0)
