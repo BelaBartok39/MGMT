@@ -1,6 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: %i[ show edit update destroy ]
-  before_action :set_staff_date, only: %i[ new create index destroy ]
+  before_action :set_staff_date, only: %i[ show destroy save index ]
 
 
   def index
@@ -32,7 +32,7 @@ class TemplatesController < ApplicationController
   def update
     if @template.update(template_params)
       respond_to do |format|
-        format.html { redirect_to templates_path, notice: "Template was successfully updated." }
+        format.html { redirect_to staff_dates_path, notice: "Template was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Template was successfully updated." }
       end
     else
@@ -44,7 +44,7 @@ class TemplatesController < ApplicationController
     @template.destroy
   
     respond_to do |format|
-      format.html { redirect_to @staff_date, notice: "Template was successfully destroyed." }
+      format.html { redirect_to staff_date_path, notice: "Template was successfully destroyed." }
       format.turbo_stream { flash.now[:notice] = "Template was successfully destroyed." }
     end
   end

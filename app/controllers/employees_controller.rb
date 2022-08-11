@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_staff_date
-  before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_employee, only: %i[ show edit update destroy import ]
   before_action :set_template
 
 
@@ -24,7 +24,7 @@ class EmployeesController < ApplicationController
   def edit
   end
 
-  def import_temp
+  def import
     @template.employees.each do |employee|
       @staff_date.employees.build([{employee_number: 
       employee.employee_number, name: employee.name, 

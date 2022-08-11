@@ -29,7 +29,7 @@ end
 
   resources :templates, except: [:show] do
     resources :staff_dates, only: [:index] do
-    post "import_temp", to: "employees#import_temp", only: [:index]
+      post "import", to: "employees#import", only: [:index]
     end
   end
 end

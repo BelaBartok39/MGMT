@@ -4,7 +4,10 @@
         <div class="line-item__name">
         
         <%= button_to template.name,
-            template_staff_date_import_temp_path(@staff_date, template),
+            template_staff_date_import_path({ 
+                staff_date_id: @staff_date.id,
+                template_id: template.id
+            }),
             data: {"turbo-method": :post} %>
 
         </div>
