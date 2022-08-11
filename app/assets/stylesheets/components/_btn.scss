@@ -60,6 +60,19 @@
     }
   }
 
+  &--temporary {
+    color: var(--color-dark);
+    background-color: white;
+    
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:active {
+      color: var(--color-dark);
+      filter: brightness(92%);
+    }
+  }
+
   &--dark {
     color: var(--color-white);
     border-color: var(--color-dark);

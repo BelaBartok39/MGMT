@@ -2,13 +2,14 @@
 
     <div class="template__actions">
         <div class="line-item__name">
-        
-        <%= button_to template.name,
-            template_staff_date_import_path({ 
+                 
+            <%= button_to template.name,
+                template_staff_date_import_path({ 
                 staff_date_id: @staff_date.id,
                 template_id: template.id
-            }),
-            data: {"turbo-method": :post} %>
+                }),
+                data: {"turbo-method": :post},
+                class: 'btn btn--temporary' %>
 
         </div>
         <%= link_to "<i class='bi bi-trash' 
