@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_staff_date
-  before_action :set_employee, only: %i[ show edit update destroy import ]
+  before_action :set_employee, only: %i[ show edit update destroy ]
   before_action :set_template
 
 
@@ -33,7 +33,7 @@ class EmployeesController < ApplicationController
 
     if @staff_date.save
       respond_to do |format|
-        format.html { redirect_to line_staff_date_path(@employee), notice: "Employees were successfully imported." }
+        format.html { redirect_to line_staff_date_path(@staff_date), notice: "Employees were successfully imported." }
         format.turbo_stream { flash.now[:notice] = "Employees were successfully imported." }
       end
     else

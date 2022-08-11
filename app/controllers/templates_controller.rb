@@ -1,6 +1,6 @@
 class TemplatesController < ApplicationController
   before_action :set_template, only: %i[ show edit update destroy ]
-  before_action :set_staff_date, only: %i[ show destroy save index ]
+  before_action :set_staff_date, only: %i[ new create index ]
 
 
   def index
