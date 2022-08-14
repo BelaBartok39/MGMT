@@ -1,0 +1,19 @@
+
+
+josh:
+  staff_date_id: 1
+  name: Josh Cosby 
+  employee_number: 12345
+  comment: Needs new shoes
+
+geoff:
+  staff_date_id: 1
+  name: Geoff Smith
+  employee_number: 6789
+  comment: Ask to bring water for team
+
+jeremy:
+  staff_date_id: 1
+  name: Jeremy Stanfill
+  employee_number: 523844
+  comment: Drives very fast

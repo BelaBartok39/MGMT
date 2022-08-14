@@ -35,7 +35,8 @@
                       primary;'></i>".html_safe,
                       [:new, @staff_date, :employee],
                       data: { turbo_frame: 
-                      nested_dom_id(@staff_date, Employee.new) } %>             
+                      nested_dom_id(@staff_date, Employee.new) },
+                      id: "icon_add_employee" %>             
         </div>
       </div>
     </div>
@@ -56,12 +57,14 @@
           
           <li class="dropdown-item"> <%= link_to "Import",
           templates_path(staff_date_id: @staff_date.id),
-          data: { turbo: true, turbo_frame: 'modal' } %></li>
+          data: { turbo: true, turbo_frame: 'modal' },
+          id: "import_template" %></li>
           
           <li class="dropdown-divider"></li>
           <li class="dropdown-item"> <%= link_to "Save...",
           new_template_path(staff_date_id: @staff_date),
-          data: { turbo: true, turbo_frame: 'modal' } %></li>
+          data: { turbo: true, turbo_frame: 'modal' },
+          id: "save_template" %></li>
         
         </ul>
       </div>

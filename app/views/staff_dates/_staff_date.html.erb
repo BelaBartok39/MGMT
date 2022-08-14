@@ -12,12 +12,13 @@
                     data: {"turbo-method": :delete},               
                     form: { data: {turbo_frame: "_top" } },
                     class:"btn btn--light staff_icon",
-                    id: "icon_delete" %>
+                    id: "icon_date_delete" %>
         <%= link_to "<i class='bi bi-pencil-square' 
                     style='font-size: 1.5rem; color: 
                     black;'></i>".html_safe,
                     [:edit, staff_date],
-                    class: "btn btn--light staff_icon" %>
+                    class: "btn btn--light staff_icon",
+                    id: "icon_date_edit" %>
       </div>
   </div>
 <% end %>
