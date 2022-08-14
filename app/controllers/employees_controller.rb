@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_staff_date
   before_action :set_employee, only: %i[ show edit update destroy ]
   before_action :set_template
