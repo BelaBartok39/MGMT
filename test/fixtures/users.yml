@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 admin: 
+  id: 1
   first_name: Nicky
   last_name: Reds
   email: jackthelion83@gmail.com
@@ -12,6 +13,7 @@ admin:
   admin: true
 
 regular: 
+  id: 2
   first_name: Average 
   last_name: Joe
   email: joe@gorails.com
