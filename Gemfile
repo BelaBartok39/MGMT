@@ -12,9 +12,6 @@ gem "sprockets-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
-#miniTest
-gem "minitest"
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
@@ -69,10 +66,16 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  #miniTest
+  gem "minitest"
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-redis'
 end
+
+
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
 gem "friendly_id", "~> 5.4"

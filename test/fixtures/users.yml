@@ -19,3 +19,11 @@ regular:
   email: joe@gorails.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   admin: false
+
+normal: 
+  id: 3
+  first_name: Great 
+  last_name: Scott
+  email: harry@gorails.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  admin: false

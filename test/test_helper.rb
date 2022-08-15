@@ -1,6 +1,12 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "database_cleaner/active_record"
+require "database_cleaner/redis"
+require  "minitest/test"
+
+DatabaseCleaner.strategy = :deletion
+
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -11,4 +17,23 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   include Devise::Test::IntegrationHelpers
+
+  module AroundEachTest
+    def before_setup
+      super
+      DatabaseCleaner.start
+    end
+  
+    def after_teardown
+      super
+      DatabaseCleaner.clean
+    end
+  end
+  
+  class Minitest::Test
+    include AroundEachTest
+  end
+  
+  
 end
+

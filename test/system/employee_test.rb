@@ -3,7 +3,7 @@ require "application_system_test_case"
 class StaffDateTest < ApplicationSystemTestCase
 
     test "can create employee as user" do
-        sign_in users(:regular)
+        sign_in users(:admin)
         visit staff_dates_url
     
         click_on "Add Date"
