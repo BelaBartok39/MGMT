@@ -3,7 +3,7 @@ require_relative "../config/environment"
 require "rails/test_help"
 require "database_cleaner/active_record"
 require "database_cleaner/redis"
-require  "minitest/test"
+require  "minitest/pride"
 
 DatabaseCleaner.strategy = :deletion
 

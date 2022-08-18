@@ -14,7 +14,7 @@ class EmployeesController < ApplicationController
 
     if @employee.save
       respond_to do |format|
-        format.html { redirect_to staff_date(@staff_date), notice: "Employee was successfully created." }
+        format.html { redirect_to staff_date_url(@staff_date), notice: "Employee was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Employee was successfully created." }
       end
     else
@@ -45,7 +45,7 @@ class EmployeesController < ApplicationController
   def update
     if @employee.update(employee_params)
       respond_to do |format|
-        format.html { redirect_to line_staff_date_path(@employee), notice: "Employee was successfully updated." }
+        format.html { redirect_to staff_date_path(@staff_date), notice: "Employee was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Employee was successfully updated." }
       end
     else
