@@ -34,7 +34,7 @@ class EmployeesController < ApplicationController
 
     if @staff_date.save
       respond_to do |format|
-        format.html { redirect_to line_staff_date_path(@staff_date), notice: "Employees were successfully imported." }
+        format.html { redirect_to staff_date_path(@staff_date), notice: "Employees were successfully imported." }
         format.turbo_stream { flash.now[:notice] = "Employees were successfully imported." }
       end
     else

@@ -15,13 +15,13 @@ class TemplatesController < ApplicationController
     @template = Template.new
   end
 
-  def create
+  def create #Currently, if source is deleted, the template's employees will be deleted as well. Will need to change this.
     @template = current_user.templates.new(template_params)
     @template.employees = @staff_date.employees
     
     if @template.save
       respond_to do |format|
-        format.html { redirect_to staff_dates_path, notice: "Template was successfully created." }
+        format.html { redirect_to staff_dates_path(@staff_date), notice: "Template was successfully created." }
         format.turbo_stream { flash.now[:notice] = "Template was successfully created." }
       end
     else
@@ -33,7 +33,7 @@ class TemplatesController < ApplicationController
   def update
     if @template.update(template_params)
       respond_to do |format|
-        format.html { redirect_to staff_dates_path, notice: "Template was successfully updated." }
+        format.html { redirect_to staff_dates_path(@staff_date), notice: "Template was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "Template was successfully updated." }
       end
     else
